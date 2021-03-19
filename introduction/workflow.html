@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>mdBook - Whirlsplash</title>
+        <title>Workflow - Whirlsplash</title>
         
         
 
@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../introduction/mdbook.html" class="active"><strong aria-hidden="true">1.1.</strong> mdBook</a></li><li class="chapter-item expanded "><a href="../introduction/resources.html"><strong aria-hidden="true">1.2.</strong> Resources</a></li><li class="chapter-item expanded "><a href="../introduction/workflow.html"><strong aria-hidden="true">1.3.</strong> Workflow</a></li><li class="chapter-item expanded "><a href="../introduction/contributing.html"><strong aria-hidden="true">1.4.</strong> Contributing</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> The WorldServer Protocol</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../protocol/packet.html"><strong aria-hidden="true">2.1.</strong> Packet Information</a></li><li class="chapter-item expanded "><a href="../protocol/constants.html"><strong aria-hidden="true">2.2.</strong> Network Constants</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> worlds.jar</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">3.1.</strong> NET.worlds</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">3.1.1.</strong> network</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../jar/net/network/obj_id.html"><strong aria-hidden="true">3.1.1.1.</strong> ObjID</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.1.1.2.</strong> ServerInputStream</div></li><li class="chapter-item expanded "><a href="../jar/net/network/server_output_stream.html"><strong aria-hidden="true">3.1.1.3.</strong> ServerOutputStream</a></li><li class="chapter-item expanded "><a href="../jar/net/network/net_const.html"><strong aria-hidden="true">3.1.1.4.</strong> netConst</a></li><li class="chapter-item expanded "><a href="../jar/net/network/net_packet.html"><strong aria-hidden="true">3.1.1.5.</strong> netPacket</a></li></ol></li></ol></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../introduction/mdbook.html"><strong aria-hidden="true">1.1.</strong> mdBook</a></li><li class="chapter-item expanded "><a href="../introduction/resources.html"><strong aria-hidden="true">1.2.</strong> Resources</a></li><li class="chapter-item expanded "><a href="../introduction/workflow.html" class="active"><strong aria-hidden="true">1.3.</strong> Workflow</a></li><li class="chapter-item expanded "><a href="../introduction/contributing.html"><strong aria-hidden="true">1.4.</strong> Contributing</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> The WorldServer Protocol</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../protocol/packet.html"><strong aria-hidden="true">2.1.</strong> Packet Information</a></li><li class="chapter-item expanded "><a href="../protocol/constants.html"><strong aria-hidden="true">2.2.</strong> Network Constants</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> worlds.jar</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">3.1.</strong> NET.worlds</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">3.1.1.</strong> network</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../jar/net/network/obj_id.html"><strong aria-hidden="true">3.1.1.1.</strong> ObjID</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.1.1.2.</strong> ServerInputStream</div></li><li class="chapter-item expanded "><a href="../jar/net/network/server_output_stream.html"><strong aria-hidden="true">3.1.1.3.</strong> ServerOutputStream</a></li><li class="chapter-item expanded "><a href="../jar/net/network/net_const.html"><strong aria-hidden="true">3.1.1.4.</strong> netConst</a></li><li class="chapter-item expanded "><a href="../jar/net/network/net_packet.html"><strong aria-hidden="true">3.1.1.5.</strong> netPacket</a></li></ol></li></ol></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -163,22 +163,42 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="mdbook"><a class="header" href="#mdbook">mdBook</a></h1>
-<p>This book was writtin using <a href="https://github.com/rust-lang/mdBook">mdBook</a>.</p>
-<p>For more information about how mdBook works, head over to the aforelinked GitHub repository.</p>
+                        <h1 id="workflow"><a class="header" href="#workflow">Workflow</a></h1>
+<h2 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h2>
+<ul>
+<li>A Java decompiler. I think <a href="https://java-decompiler.github.io/">Java Decompiler</a> is a neat one.</li>
+<li>Setting the <code>netdebug</code> flag within your <code>worlds.ini</code> file to <code>255</code>.</li>
+</ul>
+<h2 id="process"><a class="header" href="#process">Process</a></h2>
+<ol>
+<li>Run Worlds, login, walk around, just gather some sample data.</li>
+<li>Open your <code>Gamma.log</code> file within a text editor.</li>
+<li>Open Java Decompiler and drag your <code>worlds.jar</code> onto it; opening it.</li>
+<li>Within your <code>Gamma.log</code>, find a network request, e.g
+<code>[18803] test.3dcd.com:6650: send(BUDDYLISTUPDATE  fuwn 1)</code>.</li>
+<li>Note the command used, e.g. <code>BUDDYLUSTUPDATE</code>.</li>
+<li>Within Java Decompiler, bring up the Search feature using <code>Ctrl+Shift+S</code> and tick all the search options.</li>
+<li>Profit.</li>
+</ol>
+<h3 id="extended"><a class="header" href="#extended">Extended</a></h3>
+<p>For <code>BUDDYLISTUPDATE</code>, I ended up in the <code>NET.worlds.network.BuddyListUpdateCmd</code> class.</p>
+<p>Here, I can review the methods which this class contains, and I notice that one happens to have 
+the name <code>send</code>. </p>
+<p>I can now reference the raw packet data from a network proxy like Wireshark with this 
+method and connect the dots.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../introduction.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../introduction/resources.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="../introduction/resources.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../introduction/contributing.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -190,13 +210,13 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="../introduction.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../introduction/resources.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="../introduction/resources.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../introduction/contributing.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
